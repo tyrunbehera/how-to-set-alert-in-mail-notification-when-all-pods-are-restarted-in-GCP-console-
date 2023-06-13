@@ -1,0 +1,27 @@
+To set up an alert for pod restart events in Google Cloud Platform (GCP), you can utilize the following steps:
+
+Enable Stackdriver Monitoring: Ensure that Stackdriver Monitoring is enabled for your GCP project. Stackdriver is a monitoring and logging service provided by Google Cloud.
+
+Create a Log-based Metric: Create a log-based metric that captures pod restart events. The metric will be used to trigger the alert. Follow these steps:
+
+Go to the Stackdriver Metrics Explorer.
+Click on "Create Metric."
+Configure the metric as follows:
+Service: Select "Kubernetes Container."
+Metric: Choose "kubernetes.io/container/restart_count."
+Filter: Add a filter for the specific pods or namespaces you want to monitor. For example, you can use the filter resource.labels.namespace_id = "your-namespace" to monitor a specific namespace.
+Aggregator: Select "Count."
+Click on "Create Metric" to save the configuration.
+Create an Alert Policy: Now, you'll create an alert policy based on the log-based metric you defined earlier. Follow these steps:
+
+Go to the Stackdriver Monitoring Alerting page.
+Click on "Create Policy."
+Configure the policy as follows:
+Add Condition: Click on "Add Condition" and set the condition as follows:
+Configuration: Choose "Metric Threshold."
+Filter: Select the log-based metric you created in step 2.
+Condition: Specify the conditions that will trigger the alert. For example, you can set the threshold to "is above" 0 to trigger the alert whenever a pod restart occurs.
+Add Notification Channel: Click on "Add Notification Channel" and select your desired notification channel (e.g., email).
+Notification: Configure the email notification settings, such as recipients and email subject.
+Click on "Save" to create the alert policy.
+Once the above steps are completed, you will receive email notifications whenever a pod restart event occurs based on the conditions you defined in the alert policy.
